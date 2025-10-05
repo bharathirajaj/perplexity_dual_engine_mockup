@@ -1,0 +1,136 @@
+/* Vertical Layout Styles - A/B Testing */
+
+/* Override results container to be vertical and centered */
+.results-container {
+    flex-direction: column !important;
+    width: 55vw !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    gap: 16px !important;
+}
+
+/* Both panels same width */
+.instant-panel,
+.ai-panel {
+    width: 100% !important;
+}
+
+/* Instant panel - Compact at top (40% height in dual mode) */
+.instant-panel {
+    max-height: 40vh !important;
+    flex-shrink: 0;
+}
+
+/* AI panel - Expands to fill remaining space */
+.ai-panel {
+    flex: 1 !important;
+    max-height: none !important;
+    min-height: 400px !important;
+}
+
+/* Ensure proper scrolling within panels */
+.instant-panel .panel-content {
+    overflow-y: auto;
+    max-height: calc(40vh - 100px);
+}
+
+.ai-panel .panel-content {
+    overflow-y: auto;
+    max-height: calc(100% - 100px);
+}
+
+/* Single mode: Full height for instant-only */
+body.mode-instant-only .instant-panel {
+    max-height: none !important;
+    flex: 1 !important;
+}
+
+body.mode-instant-only .instant-panel .panel-content {
+    max-height: calc(100vh - 300px) !important;
+}
+
+/* Single mode: Full height for AI-only */
+body.mode-ai-only .ai-panel {
+    max-height: none !important;
+    flex: 1 !important;
+}
+
+body.mode-ai-only .ai-panel .panel-content {
+    max-height: calc(100vh - 300px) !important;
+}
+
+/* Compact panel headers in vertical layout */
+.panel-header {
+    padding: 8px 16px !important;
+    min-height: auto !important;
+}
+
+.panel-title-row {
+    margin-bottom: 0 !important;
+    gap: 8px !important;
+}
+
+.panel-title {
+    font-size: 14px !important;
+}
+
+.panel-icon {
+    font-size: 16px !important;
+}
+
+.panel-meta {
+    font-size: 11px !important;
+    margin-top: 6px !important;
+}
+
+.performance-metrics,
+.synthesis-quality {
+    font-size: 11px !important;
+    gap: 8px !important;
+}
+
+.coverage-badge,
+.quality-badge {
+    padding: 2px 6px !important;
+    font-size: 10px !important;
+}
+
+.perf-item {
+    font-size: 11px !important;
+}
+
+/* Fix search hint width in vertical layout */
+.search-hint {
+    max-width: 100% !important;
+    white-space: normal !important;
+    line-height: 1.6 !important;
+}
+
+/* Expand/Collapse button for instant results */
+.expand-btn {
+    background: transparent;
+    border: 1px solid var(--color-outline);
+    border-radius: 6px;
+    padding: 4px 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text);
+}
+
+.expand-btn:hover {
+    background: var(--color-surface);
+    border-color: var(--color-primary);
+}
+
+/* Expanded state for instant panel */
+.instant-panel.expanded {
+    max-height: 70vh !important;
+}
+
+.instant-panel.expanded .panel-content {
+    max-height: calc(70vh - 100px) !important;
+}

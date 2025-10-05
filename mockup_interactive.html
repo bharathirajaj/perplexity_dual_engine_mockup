@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perplexity Dual-Engine - Interactive Demo</title>
+    <link rel="stylesheet" href="interactive-styles.css">
+</head>
+<body class="pm-view-active">
+    <!-- Metrics Dashboard -->
+    <div class="metrics-bar" id="metricsBar">
+        <div class="metric-item">
+            <div class="metric-label">Routing Accuracy</div>
+            <div class="metric-value" id="metricRouting">--</div>
+            <div class="metric-trend">Target: 90%</div>
+        </div>
+        <div class="metric-item">
+            <div class="metric-label">Instant TTFR</div>
+            <div class="metric-value" id="metricInstant">--</div>
+            <div class="metric-trend">SLO: ≤150ms</div>
+        </div>
+        <div class="metric-item">
+            <div class="metric-label">AI First Token</div>
+            <div class="metric-value" id="metricAI">--</div>
+            <div class="metric-trend">SLO: ≤600ms</div>
+        </div>
+        <div class="metric-item">
+            <div class="metric-label">Query Cost</div>
+            <div class="metric-value" id="metricCost">--</div>
+            <div class="metric-trend">Target: ≤$0.007</div>
+        </div>
+        <div class="metric-item">
+            <div class="metric-label">MAU → Pro</div>
+            <div class="metric-value">3.8%</div>
+            <div class="metric-trend">↑ Target: 3%</div>
+        </div>
+        <div class="metric-item">
+            <div class="metric-label">NPS Score</div>
+            <div class="metric-value">64</div>
+            <div class="metric-trend">↑ Target: 60</div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="search-container">
+            <div class="top-bar">
+                <div class="logo-section">
+                    <div class="logo">Perplexity</div>
+                    <div class="beta-badge">DUAL-ENGINE BETA</div>
+                </div>
+                <div class="user-controls">
+                    <a href="mockup_vertical.html" class="control-btn">🔄 Try Vertical Layout</a>
+                    <button class="control-btn" id="themeToggle">🌙 Dark Mode</button>
+                    <button class="control-btn" id="pmViewToggle">👤 Switch to User View</button>
+                    <button class="control-btn" id="userToggle"><span style="color: #F59E0B;">●</span> Pro User</button>
+                </div>
+            </div>
+
+            <!-- Strategy Banner (PM View Only) -->
+            <div class="strategy-banner" id="strategyBanner">
+                <div class="strategy-text" id="strategyText"></div>
+                <div class="routing-indicator">
+                    <div class="route-status">
+                        <div class="status-dot"></div>
+                        <span id="instantStatus">Instant: Idle</span>
+                    </div>
+                    <div class="route-status">
+                        <div class="status-dot status-dot-ai"></div>
+                        <span id="aiStatus">AI: Idle</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search Box -->
+            <div class="search-box-wrapper">
+                <div class="search-box" id="searchBox">
+                    <span class="search-icon">🔍</span>
+                    <input
+                        type="text"
+                        class="search-input"
+                        id="searchInput"
+                        placeholder="Ask anything..."
+                        autocomplete="off"
+                    >
+                    <div class="mode-selector">
+                        <button class="mode-btn active" data-mode="dual">Dual</button>
+                        <button class="mode-btn" data-mode="instant">Instant</button>
+                        <button class="mode-btn" data-mode="ai">AI</button>
+                    </div>
+                </div>
+
+                <!-- Search Suggestions Dropdown -->
+                <div class="search-suggestions" id="searchSuggestions"></div>
+
+                <!-- Keyboard Hints -->
+                <div class="search-hint">
+                    Press <kbd>Enter</kbd> to search •
+                    <kbd>Ctrl+Enter</kbd> for instant only •
+                    <kbd>Alt+Enter</kbd> for AI only •
+                    <kbd>Esc</kbd> to clear
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container" id="mainContainer">
+        <!-- Empty State (shown initially) -->
+        <div class="empty-state" id="emptyState">
+            <div class="empty-state-icon">🔍</div>
+            <h2 class="empty-state-title">Ask anything</h2>
+            <p class="empty-state-text">Try one of these example queries:</p>
+            <div class="example-queries" id="exampleQueries"></div>
+        </div>
+
+        <!-- Results Container (hidden initially) -->
+        <div class="results-container" id="resultsContainer" style="display: none;">
+            <!-- Instant Results Panel (40%) -->
+            <div class="instant-panel" id="instantPanel">
+                <div class="panel-header">
+                    <div class="panel-title-row">
+                        <div class="panel-title">
+                            <span class="panel-icon">⚡</span>
+                            Instant Results
+                        </div>
+                        <div class="performance-metrics">
+                            <div class="perf-item">
+                                Latency: <span class="perf-value" id="instantLatency">--</span>
+                            </div>
+                            <div class="perf-item">
+                                Provider: <span class="perf-value">Brave API</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-meta">
+                        <span>Navigational + Informational queries coverage</span>
+                        <span class="coverage-badge">~70% Query Coverage</span>
+                    </div>
+                </div>
+
+                <div class="panel-content" id="instantContent">
+                    <!-- Skeleton loader shown initially -->
+                    <div class="skeleton-loader" id="instantSkeleton">
+                        <div class="skeleton-result"></div>
+                        <div class="skeleton-result"></div>
+                        <div class="skeleton-result"></div>
+                    </div>
+                    <!-- Results will be injected here -->
+                </div>
+            </div>
+
+            <!-- AI Synthesis Panel (60%) -->
+            <div class="ai-panel" id="aiPanel">
+                <div class="panel-header">
+                    <div class="panel-title-row">
+                        <div class="panel-title">
+                            <span class="panel-icon">🧠</span>
+                            AI-Powered Synthesis
+                        </div>
+                        <div class="synthesis-quality">
+                            <div class="quality-badge confidence">High Confidence</div>
+                            <div class="quality-badge sources" id="sourcesCount">Sources</div>
+                        </div>
+                    </div>
+                    <div class="panel-meta">
+                        <span>GPT-4o • Real-time retrieval • Multi-source synthesis</span>
+                        <span class="coverage-badge">Complex/Research Queries</span>
+                    </div>
+                </div>
+
+                <div class="panel-content ai-content" id="aiContent">
+                    <!-- Skeleton loader shown initially -->
+                    <div class="skeleton-loader" id="aiSkeleton">
+                        <div class="skeleton-text"></div>
+                        <div class="skeleton-text"></div>
+                        <div class="skeleton-text short"></div>
+                        <div class="skeleton-text"></div>
+                    </div>
+                    <!-- AI response will be streamed here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PM Annotation -->
+    <div class="pm-note" id="pmNote">
+        <div class="pm-note-header">
+            <div class="pm-icon">PM</div>
+            <div class="pm-note-title">Interactive Demo</div>
+        </div>
+        <div class="pm-note-text">
+            This interactive mockup simulates the dual-engine architecture.
+            <strong>Try searching</strong> to see instant results load in ~118ms
+            and AI synthesis stream from ~482ms. Use keyboard shortcuts for different modes.
+        </div>
+    </div>
+
+    <!-- Follow-up Input (shown in clean view only) -->
+    <div class="followup-container" id="followupContainer">
+        <div class="followup-wrapper">
+            <input type="text" class="followup-input" placeholder="Ask a follow-up...">
+            <div class="followup-actions">
+                <button class="followup-btn" title="Attach file">📎</button>
+                <button class="followup-btn" title="Voice input">🎤</button>
+                <button class="followup-btn" title="Submit">↑</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+    <script src="interactive-demo.js"></script>
+</body>
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perplexity Dual-Engine Strategy - Interactive Demo</title>
+    <meta name="description" content="Interactive demonstration of the dual-engine search architecture proposed for Perplexity AI to compete with Google Search">
+    <meta property="og:title" content="Perplexity Dual-Engine Strategy">
+    <meta property="og:description" content="A strategic blueprint for the next era of intelligent information access">
+    <meta property="og:type" content="website">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .hero-section {
+            background: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            margin-bottom: 40px;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .logo {
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        .tagline {
+            font-size: 24px;
+            color: #1F2937;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .description {
+            font-size: 16px;
+            color: #6B7280;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667EEA;
+            border: 2px solid #667EEA;
+        }
+
+        .btn-secondary:hover {
+            background: #F3F4F6;
+            transform: translateY(-2px);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .feature-card:nth-child(2) { animation-delay: 0.1s; }
+        .feature-card:nth-child(3) { animation-delay: 0.2s; }
+        .feature-card:nth-child(4) { animation-delay: 0.3s; }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .feature-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1F2937;
+            margin-bottom: 12px;
+        }
+
+        .feature-description {
+            font-size: 14px;
+            color: #6B7280;
+            line-height: 1.6;
+        }
+
+        .stats-section {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: fadeIn 0.8s ease-out 0.4s backwards;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 32px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #6B7280;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            font-size: 14px;
+            animation: fadeIn 0.8s ease-out 0.6s backwards;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 40px 24px;
+            }
+
+            .logo {
+                font-size: 36px;
+            }
+
+            .tagline {
+                font-size: 20px;
+            }
+
+            .description {
+                font-size: 14px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .demo-badge {
+            display: inline-block;
+            background: #FEF3C7;
+            color: #92400E;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            border: 1px solid #FDE68A;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="demo-badge">✨ Interactive Demo</div>
+            <div class="logo">Perplexity</div>
+            <h1 class="tagline">Dual-Engine Search Strategy</h1>
+            <p class="description">
+                A strategic blueprint for the next era of intelligent information access. Combining instant search results (40%) with AI-powered synthesis (60%) to compete with Google Search.
+            </p>
+            <div class="cta-buttons">
+                <a href="mockup_interactive.html" class="btn btn-primary pulse">View Interactive Mockup</a>
+                <a href="https://github.com/bharathirajaj/perplexity_dual_engine_mockup" class="btn btn-secondary" target="_blank">View on GitHub</a>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">94.2%</div>
+                    <div class="stat-label">Routing Accuracy</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">118ms</div>
+                    <div class="stat-label">Instant Latency</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">482ms</div>
+                    <div class="stat-label">AI First Token</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">$0.0058</div>
+                    <div class="stat-label">Cost per Query</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">3.8%</div>
+                    <div class="stat-label">MAU → Pro Conv.</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">64</div>
+                    <div class="stat-label">NPS Score</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <div class="feature-title">Instant Results</div>
+                <div class="feature-description">
+                    Traditional search results in ≤150ms via Brave/Mojeek API integration. Covers 70% of navigational and transactional queries.
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <div class="feature-title">AI Synthesis</div>
+                <div class="feature-description">
+                    Deep context and analysis in ≤600ms. GPT-4o powered synthesis with inline citations, source cards, and decision matrices.
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <div class="feature-title">Smart Routing</div>
+                <div class="feature-description">
+                    Intelligent query classification (navigational, informational, transactional, complex) with 94.2% accuracy.
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <div class="feature-title">Real-Time Metrics</div>
+                <div class="feature-description">
+                    Live SLO tracking, performance monitoring, cost optimization, and conversion analytics for data-driven decisions.
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>
+                Built by <a href="https://github.com/bharathirajaj" target="_blank">Bharathi Raja Jothi</a> |
+                Read the full analysis on
+                <a href="https://medium.com/@bharathirajaj" target="_blank">Medium</a> |
+                <a href="https://linkedin.com/in/bharathirajaj" target="_blank">LinkedIn</a>
+            </p>
+            <p style="margin-top: 12px; opacity: 0.8;">
+                Based on real market data: Google &lt;90% market share, $500B search market opportunity
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Add smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Track clicks for analytics (can integrate with Google Analytics)
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const action = this.textContent.trim();
+                console.log('CTA Click:', action);
+                // Add your analytics tracking here
+            });
+        });
+
+        // Add entrance animations on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.feature-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
