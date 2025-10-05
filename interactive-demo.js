@@ -444,7 +444,7 @@ class PerplexityDemo {
     }
 
     loadTheme() {
-        const theme = localStorage.getItem('theme');
+        const theme = localStorage.getItem('theme') || 'dark'; // Default to dark mode
         const pmView = localStorage.getItem('pmView');
 
         if (theme === 'dark') {
