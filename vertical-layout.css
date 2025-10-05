@@ -134,3 +134,85 @@ body.mode-ai-only .ai-panel .panel-content {
 .instant-panel.expanded .panel-content {
     max-height: calc(70vh - 100px) !important;
 }
+
+/* Mobile Responsive Overrides for Vertical Layout */
+@media (max-width: 768px) {
+    .results-container {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .instant-panel,
+    .ai-panel {
+        border-radius: 0 !important;
+        margin: 0 !important;
+    }
+
+    .instant-panel {
+        max-height: 50vh !important;
+    }
+
+    .instant-panel .panel-content {
+        max-height: calc(50vh - 80px) !important;
+    }
+
+    .ai-panel {
+        min-height: 300px !important;
+    }
+
+    .panel-header {
+        padding: 10px 12px !important;
+    }
+
+    .panel-title {
+        font-size: 13px !important;
+    }
+
+    .panel-meta {
+        font-size: 10px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .results-container {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        padding: 0 !important;
+        gap: 8px !important;
+        margin: 0 !important;
+    }
+
+    .instant-panel {
+        max-height: 40vh !important;
+    }
+
+    .instant-panel .panel-content {
+        max-height: calc(40vh - 70px) !important;
+    }
+
+    .ai-panel {
+        min-height: 250px !important;
+    }
+
+    .instant-panel.expanded {
+        max-height: 55vh !important;
+    }
+
+    .instant-panel.expanded .panel-content {
+        max-height: calc(55vh - 80px) !important;
+    }
+
+    .panel-header {
+        padding: 8px 10px !important;
+    }
+
+    .panel-title {
+        font-size: 12px !important;
+    }
+
+    .panel-icon {
+        font-size: 14px !important;
+    }
+}

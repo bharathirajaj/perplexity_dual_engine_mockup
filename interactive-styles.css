@@ -64,6 +64,43 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Mobile Notice Banner
+   ========================================================================== */
+.mobile-notice {
+    display: none; /* Hidden by default */
+    background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+    color: white;
+    padding: 12px 16px;
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.4;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.mobile-notice strong {
+    font-weight: 600;
+}
+
+/* Show only on small screens */
+@media (max-width: 768px) {
+    .mobile-notice {
+        display: block;
+    }
+
+    /* Force vertical layout on mobile */
+    .results-container {
+        flex-direction: column !important;
+    }
+
+    .instant-panel,
+    .ai-panel {
+        width: 100% !important;
+    }
+}
+
 /* Metrics Dashboard
    ========================================================================== */
 .metrics-bar {
@@ -890,6 +927,7 @@ body:not(.pm-view-active) .followup-container {
 
 /* Responsive
    ========================================================================== */
+/* Tablet & Mobile Responsive Design */
 @media (max-width: 1200px) {
     .results-container {
         flex-direction: column;
@@ -902,5 +940,270 @@ body:not(.pm-view-active) .followup-container {
 
     .pm-note {
         display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Metrics bar - stack vertically on mobile */
+    .metrics-bar {
+        flex-wrap: wrap;
+        padding: 10px 8px;
+        gap: 8px;
+        overflow-x: auto;
+    }
+
+    .metric-item {
+        flex: 1 1 calc(50% - 8px);
+        min-width: 140px;
+        padding: 8px;
+    }
+
+    .metric-label {
+        font-size: 10px;
+    }
+
+    .metric-value {
+        font-size: 16px;
+    }
+
+    .metric-trend {
+        font-size: 9px;
+    }
+
+    /* Header adjustments */
+    .header {
+        padding: 10px 12px;
+    }
+
+    .header-content {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+    }
+
+    .logo-section {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .beta-badge {
+        font-size: 10px;
+        padding: 3px 8px;
+    }
+
+    .user-controls {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px;
+    }
+
+    .control-btn {
+        font-size: 11px;
+        padding: 6px 10px;
+        flex: 1 1 auto;
+        min-width: 120px;
+        text-align: center;
+    }
+
+    /* Stack layout toggle and presentation toggle full width */
+    #layoutToggle,
+    #pmViewToggle {
+        flex: 1 1 100%;
+        min-width: unset;
+    }
+
+    .search-container {
+        padding: 8px;
+        width: 100%;
+    }
+
+    .search-box {
+        font-size: 14px;
+        padding: 10px 12px;
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    .search-box-wrapper {
+        width: 100%;
+    }
+
+    /* Control bar - hidden on mobile, use header controls instead */
+    .control-bar {
+        display: none;
+    }
+
+    /* Results panels */
+    .instant-panel,
+    .ai-panel {
+        padding: 12px;
+    }
+
+    .panel-header {
+        font-size: 14px;
+        padding: 10px 12px;
+        position: relative; /* Remove sticky on mobile to prevent overlap */
+        top: auto;
+    }
+
+    /* Result cards */
+    .result-item {
+        padding: 12px;
+        margin-bottom: 12px;
+    }
+
+    .result-title {
+        font-size: 15px;
+    }
+
+    .result-url {
+        font-size: 12px;
+    }
+
+    .result-snippet {
+        font-size: 13px;
+    }
+
+    /* AI synthesis section */
+    .synthesis-section h3 {
+        font-size: 16px;
+    }
+
+    .synthesis-text {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    /* Source cards */
+    .source-card {
+        padding: 12px;
+    }
+
+    .source-title {
+        font-size: 13px;
+    }
+
+    .source-meta {
+        font-size: 11px;
+    }
+
+    /* Example queries */
+    .example-queries {
+        padding: 12px;
+    }
+
+    .query-chip {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+
+    /* Strategy banner */
+    .strategy-banner {
+        padding: 16px;
+        margin: 12px;
+    }
+
+    .strategy-title {
+        font-size: 18px;
+    }
+
+    .strategy-text {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Extra small mobile phones */
+    .metrics-bar {
+        padding: 8px 6px;
+        gap: 6px;
+    }
+
+    .metric-item {
+        flex: 1 1 100%;
+        min-width: unset;
+        padding: 6px;
+    }
+
+    .metric-label {
+        font-size: 9px;
+    }
+
+    .metric-value {
+        font-size: 14px;
+    }
+
+    .metric-trend {
+        font-size: 8px;
+    }
+
+    .header {
+        padding: 10px 12px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .search-container {
+        padding: 6px;
+        width: 100%;
+    }
+
+    .search-box {
+        font-size: 13px;
+        padding: 8px 10px;
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    .search-box-wrapper {
+        width: 100%;
+    }
+
+    .control-bar {
+        padding: 8px 10px;
+        gap: 5px;
+    }
+
+    .control-btn {
+        font-size: 11px;
+        padding: 6px 8px;
+        flex: 1 1 auto;
+    }
+
+    #pmViewToggle {
+        font-size: 11px;
+        padding: 6px 10px;
+    }
+
+    .instant-panel,
+    .ai-panel {
+        padding: 10px;
+    }
+
+    .panel-header {
+        font-size: 13px;
+        padding: 8px 10px;
+        position: relative;
+        top: auto;
+    }
+
+    .result-title {
+        font-size: 14px;
+    }
+
+    .synthesis-section h3 {
+        font-size: 15px;
+    }
+
+    .query-chip {
+        font-size: 11px;
+        padding: 5px 10px;
     }
 }
