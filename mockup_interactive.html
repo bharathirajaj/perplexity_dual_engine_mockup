@@ -5,8 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perplexity Dual-Engine - Interactive Demo</title>
     <link rel="stylesheet" href="interactive-styles.css">
+    <script>
+        // Prevent flash of light mode - apply dark mode immediately before body renders
+        const theme = localStorage.getItem('theme') || 'dark';
+        if (theme === 'dark') {
+            document.addEventListener('DOMContentLoaded', function() {
+                document.body.classList.add('dark-mode');
+            });
+        }
+    </script>
 </head>
-<body class="pm-view-active">
+<body class="pm-view-active dark-mode">
     <!-- Metrics Dashboard -->
     <div class="metrics-bar" id="metricsBar">
         <div class="metric-item">
