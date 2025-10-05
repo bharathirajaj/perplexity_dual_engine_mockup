@@ -450,6 +450,9 @@ class PerplexityDemo {
         if (theme === 'dark') {
             document.body.classList.add('dark-mode');
             document.getElementById('themeToggle').textContent = '☀️ Light Mode';
+        } else {
+            document.body.classList.remove('dark-mode');
+            document.getElementById('themeToggle').textContent = '🌙 Dark Mode';
         }
 
         if (pmView === 'hidden') {
