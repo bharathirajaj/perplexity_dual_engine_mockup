@@ -10,6 +10,21 @@
 
 This repository contains a high-fidelity interactive mockup showcasing a dual-engine search architecture for Perplexity AI. The concept combines traditional instant search (40%) with AI-powered synthesis (60%) to deliver both speed and intelligence in a single unified interface.
 
+## 📄 Full Strategic Analysis
+
+**→ [Read the complete strategy: STRATEGY.md](STRATEGY.md)**
+
+The strategy document includes:
+- Market analysis and Google's weaknesses
+- Technical architecture breakdown  
+- Query distribution data (40-50% navigational, 20-30% informational)
+- 3-phase implementation roadmap
+- Cost modeling (AI vs traditional search economics)
+- Risk mitigation strategies
+- Enterprise wedge opportunity
+
+**tl;dr:** AI search costs 8-10× more than traditional indexing. By routing simple queries to instant search and complex queries to AI, Perplexity can serve all user needs sustainably while challenging Google's dominance.
+
 ### Why Dual-Engine?
 
 Google's search market share dipped below 90% for the first time in a decade. Users are fragmenting between:
