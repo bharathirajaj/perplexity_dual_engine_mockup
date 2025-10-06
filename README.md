@@ -112,11 +112,24 @@ The mockup demonstrates:
 
 ## About
 
-**Created by:** [Bharathi Raja Jothi](https://github.com/bharathirajaj)
+**Created by:** [Bharathi Raja Jothi](https://www.linkedin.com/in/bharathirajaj/)
 
 **Purpose:** Strategic product concept demonstrating how Perplexity AI can challenge Google's search dominance through intelligent architecture design.
 
-**Note:** This is a conceptual mockup. All data and metrics shown are simulated to illustrate design and interaction patterns. Market data is sourced from public research and cited in REFERENCES.md.
+**Note:** This is a conceptual mockup with simulated data to illustrate design and interaction patterns. Market data is sourced from public research and cited in [REFERENCES.md](REFERENCES.md).
+
+---
+
+## Connect & Discuss
+
+💬 **Want to discuss this strategy?**
+- [Open an issue](https://github.com/bharathirajaj/perplexity_dual_engine_mockup/issues) for technical questions
+- [Start a discussion](https://github.com/bharathirajaj/perplexity_dual_engine_mockup/discussions) for strategic feedback
+- [LinkedIn post](https://www.linkedin.com/posts/activity-7380599313221132288-jPv3?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAAmQhW4BTGtQ18wvGqRUTEyu9rcV-ZZS7sA) - Join the conversation
+- [Medium post](https://medium.com/@jbspeedster/the-dual-engine-strategy-how-perplexity-can-dethrone-google-search-0eda2e041047) - Join the conversation
+- Fork and contribute improvements
+
+---
 
 ## License
 
@@ -124,4 +137,4 @@ MIT License - Free to use with attribution
 
 ---
 
-💬 **Feedback?** Open an issue or submit a pull request. This is a living concept open to community input.
+*If you found this valuable, ⭐ star the repo and share it with product strategists and search enthusiasts!*
