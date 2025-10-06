@@ -70,7 +70,7 @@ Users want instant factual links, not a 3-second AI flow. Currently, they revert
 
 ## **The Dual-Engine Solution**
 
-![Dual-Engine Interface](screenshots/dual-engine-hero.png)
+![Dual-Engine Interface](screenshots/demo-clean-view.png)
 
 *The dual-engine interface in action: 40% instant results (left), 60% AI synthesis (right).*
 
